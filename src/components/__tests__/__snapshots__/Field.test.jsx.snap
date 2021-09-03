@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Field /> Should Component Renders With Default Behaviour 1`] = `
+<div>
+  <div
+    class="retro-field"
+  >
+    <input
+      class="retro-input"
+      id="fieldId"
+      name="fieldId"
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;

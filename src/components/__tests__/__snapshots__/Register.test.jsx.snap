@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Register /> Should Component Renders With Default Behaviour 1`] = `
+<div>
+  <form
+    class="retro-form"
+  >
+    <h2>
+      LoremIpsum
+    </h2>
+    <div
+      class="retro-field"
+    >
+      <label
+        for="firstName"
+      >
+        What is your first name ?
+      </label>
+      <input
+        class="retro-input"
+        id="firstName"
+        name="firstName"
+        placeholder="John"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      class="retro-field"
+    >
+      <label
+        for="lastName"
+      >
+        What is your last name ?
+      </label>
+      <input
+        class="retro-input"
+        id="lastName"
+        name="lastName"
+        placeholder="Doe"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      class="retro-field"
+    >
+      <label
+        for="yearOld"
+      >
+        How old are you ?
+      </label>
+      <input
+        class="retro-input"
+        id="yearOld"
+        name="yearOld"
+        placeholder="42"
+        type="number"
+        value=""
+      />
+    </div>
+    <div
+      class="retro-field"
+    >
+      <label
+        for="gender"
+      >
+        What kind of human are you ?
+      </label>
+      <select
+        class="retro-select"
+        id="gender"
+        name="gender"
+      >
+        <option
+          disabled=""
+          selected=""
+          value="unknown"
+        >
+          Unknown
+        </option>
+        <option
+          value="gentleman"
+        >
+          Gentleman
+        </option>
+        <option
+          value="lady"
+        >
+          Lady
+        </option>
+      </select>
+    </div>
+    <button
+      class="retro-button"
+      type="submit"
+    >
+      SEND
+    </button>
+  </form>
+</div>
+`;
