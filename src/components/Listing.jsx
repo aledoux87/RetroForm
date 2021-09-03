@@ -1,7 +1,10 @@
 import React from 'react';
-import { shape, string, number, func } from 'prop-types';
+import { shape, string, number } from 'prop-types';
+import { useHistory } from 'react-router';
 
 function Listing(props) {
+  const history = useHistory();
+
   return (
     <div className="retro-form">
       <h2>Listing</h2>
@@ -14,7 +17,7 @@ function Listing(props) {
           ))}
         </ul>
       )}
-      <button className="retro-button" onClick={props.goToNextView}>
+      <button className="retro-button" onClick={() => history.push('/login')}>
         RESET
       </button>
     </div>
@@ -30,8 +33,7 @@ Listing.propTypes = {
     lastName: string,
     birthYear: number,
     gender: string
-  }),
-  goToNextView: func
+  })
 };
 
 export default Listing;

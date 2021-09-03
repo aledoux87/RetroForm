@@ -51,7 +51,7 @@ npm run test
 - [x] Créer un composant de récapitulatif de données
   - <span style="text-decoration:underline">Source :</span> `git checkout feat/hooks`
   - <span style="text-decoration:underline">Cible :</span> `git checkout feat/listing`
-- [ ] Mettre en place la navigation par routes
+- [x] Mettre en place la navigation par routes
   - <span style="text-decoration:underline">Source :</span> `git checkout feat/listing`
   - <span style="text-decoration:underline">Cible :</span> `git checkout feat/routing`
 - [ ] Utiliser **Redux**, plutôt que le passage de `props` entre les composants

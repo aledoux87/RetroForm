@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { string, func } from 'prop-types';
+import { useHistory } from 'react-router';
 import Field from './Field';
 import UserService from '../services/userService';
 
 function Register(props) {
+  const history = useHistory();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [yearOld, setYearOld] = useState(0);
@@ -22,7 +24,7 @@ function Register(props) {
     UserService.registerUser({ firstName, lastName, yearOld, gender })
       .then(result => {
         props.setUserData(result);
-        props.goToNextView();
+        history.push('/listing');
       })
       .catch(err => alert(err));
   };
@@ -82,8 +84,7 @@ function Register(props) {
 Register.propTypes = {
   title: string.isRequired,
   subTitle: string,
-  setUserData: func,
-  goToNextView: func
+  setUserData: func
 };
 
 export default Register;

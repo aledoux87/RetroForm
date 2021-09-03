@@ -1,18 +1,40 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Register from '../Register';
 import UserService from '../../services/userService';
 
 jest.mock('../../services/userService');
 
 describe('<Register />', () => {
+  // const { location } = window;
+
+  // beforeAll(() => {
+  //   delete window.location;
+  //   window.location = {
+  //     href: '',
+  //   };
+  // });
+
+  // afterAll(() => {
+  //   window.location = location;
+  // });
+
   it('Should Component Renders With Default Behaviour', () => {
-    const { container } = render(<Register title="LoremIpsum" />);
+    const { container } = render(
+      <Router>
+        <Register title="LoremIpsum" />
+      </Router>
+    );
     expect(container).toMatchSnapshot();
   });
 
   it('Should Component Renders With Props', () => {
-    const { queryByText } = render(<Register title="LoremIpsum" subTitle="Lorem ipsum dolor sit amet" />);
+    const { queryByText } = render(
+      <Router>
+        <Register title="LoremIpsum" subTitle="Lorem ipsum dolor sit amet" />
+      </Router>
+    );
     expect(queryByText('Lorem ipsum dolor sit amet')).toBeInTheDocument();
   });
 
@@ -25,10 +47,11 @@ describe('<Register />', () => {
     });
 
     const setUserDataMock = jest.fn();
-    const goToNextViewMock = jest.fn();
 
     const { container } = render(
-      <Register title="LoremIpsum" setUserData={setUserDataMock} goToNextView={goToNextViewMock} />
+      <Router>
+        <Register title="LoremIpsum" setUserData={setUserDataMock} />
+      </Router>
     );
 
     const firstNameInput = container.querySelector('#firstName');
@@ -47,7 +70,7 @@ describe('<Register />', () => {
 
     await waitFor(() => {
       expect(setUserDataMock).toHaveBeenCalled();
-      expect(goToNextViewMock).toHaveBeenCalled();
+      expect(window.location.href).toEqual('http://localhost/listing');
     });
   });
 });

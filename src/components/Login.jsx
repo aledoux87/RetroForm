@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { string, func } from 'prop-types';
+import { useHistory } from 'react-router';
 import Field from './Field';
 import UserService from '../services/userService';
 
 function Login(props) {
+  const history = useHistory();
   const [login, setLogin] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,7 +22,7 @@ function Login(props) {
     UserService.loginUser({ login, email, password })
       .then(result => {
         props.setUserData(result);
-        props.goToNextView();
+        history.push('/register');
       })
       .catch(err => alert(err));
   };
@@ -57,8 +59,7 @@ function Login(props) {
 Login.propTypes = {
   title: string.isRequired,
   subTitle: string,
-  setUserData: func,
-  goToNextView: func
+  setUserData: func
 };
 
 export default Login;
