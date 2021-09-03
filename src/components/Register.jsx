@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { string, func } from 'prop-types';
+import { string } from 'prop-types';
 import { useHistory } from 'react-router';
-import Field from './Field';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../redux/user';
 import UserService from '../services/userService';
+import Field from './Field';
 
 function Register(props) {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [yearOld, setYearOld] = useState(0);
@@ -23,7 +26,7 @@ function Register(props) {
 
     UserService.registerUser({ firstName, lastName, yearOld, gender })
       .then(result => {
-        props.setUserData(result);
+        dispatch(setUser(result));
         history.push('/listing');
       })
       .catch(err => alert(err));
@@ -83,8 +86,7 @@ function Register(props) {
 
 Register.propTypes = {
   title: string.isRequired,
-  subTitle: string,
-  setUserData: func
+  subTitle: string
 };
 
 export default Register;

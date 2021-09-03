@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { makeStore } from '../../redux/store';
 import Register from '../Register';
 import UserService from '../../services/userService';
 
@@ -8,6 +10,7 @@ jest.mock('../../services/userService');
 
 describe('<Register />', () => {
   // const { location } = window;
+  const store = makeStore();
 
   // beforeAll(() => {
   //   delete window.location;
@@ -22,18 +25,22 @@ describe('<Register />', () => {
 
   it('Should Component Renders With Default Behaviour', () => {
     const { container } = render(
-      <Router>
-        <Register title="LoremIpsum" />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Register title="LoremIpsum" />
+        </Router>
+      </Provider>
     );
     expect(container).toMatchSnapshot();
   });
 
   it('Should Component Renders With Props', () => {
     const { queryByText } = render(
-      <Router>
-        <Register title="LoremIpsum" subTitle="Lorem ipsum dolor sit amet" />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Register title="LoremIpsum" subTitle="Lorem ipsum dolor sit amet" />
+        </Router>
+      </Provider>
     );
     expect(queryByText('Lorem ipsum dolor sit amet')).toBeInTheDocument();
   });
@@ -42,16 +49,16 @@ describe('<Register />', () => {
     UserService.registerUser.mockResolvedValue({
       firstName: 'John',
       lastName: 'DOE',
-      birthYear: '1993',
+      birthYear: 1993,
       gender: 'Boy'
     });
 
-    const setUserDataMock = jest.fn();
-
     const { container } = render(
-      <Router>
-        <Register title="LoremIpsum" setUserData={setUserDataMock} />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Register title="LoremIpsum" />
+        </Router>
+      </Provider>
     );
 
     const firstNameInput = container.querySelector('#firstName');
@@ -69,7 +76,6 @@ describe('<Register />', () => {
     fireEvent.click(sendButton);
 
     await waitFor(() => {
-      expect(setUserDataMock).toHaveBeenCalled();
       expect(window.location.href).toEqual('http://localhost/listing');
     });
   });

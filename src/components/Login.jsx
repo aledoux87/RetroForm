@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { string, func } from 'prop-types';
+import { string } from 'prop-types';
 import { useHistory } from 'react-router';
-import Field from './Field';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../redux/user';
 import UserService from '../services/userService';
+import Field from './Field';
 
 function Login(props) {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [login, setLogin] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +24,7 @@ function Login(props) {
 
     UserService.loginUser({ login, email, password })
       .then(result => {
-        props.setUserData(result);
+        dispatch(setUser(result));
         history.push('/register');
       })
       .catch(err => alert(err));
@@ -58,8 +61,7 @@ function Login(props) {
 
 Login.propTypes = {
   title: string.isRequired,
-  subTitle: string,
-  setUserData: func
+  subTitle: string
 };
 
 export default Login;
