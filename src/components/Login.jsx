@@ -8,6 +8,7 @@ class Login extends Component {
 
     this.state = {
       login: '',
+      email: '',
       password: ''
     };
 
@@ -17,10 +18,11 @@ class Login extends Component {
   submitForm(event) {
     event.preventDefault();
 
-    const { login, password } = this.state;
+    const { login, email, password } = this.state;
 
     console.log('<Login />', {
       login,
+      email,
       password
     });
 
@@ -61,8 +63,6 @@ class Login extends Component {
           />
         </div>
 
-        {/* TODO: Déboguer le composant, afin de mettre à jour son état */}
-
         <div className="retro-field">
           <label htmlFor="password">What is your password ?</label>
           <input
@@ -71,7 +71,7 @@ class Login extends Component {
             name="password"
             type="password"
             defaultValue={this.state.password}
-            onChange={e => (this.state = { password: e.target.value })}
+            onChange={e => this.setState({ password: e.target.value })}
           />
         </div>
 
