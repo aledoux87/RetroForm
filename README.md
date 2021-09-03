@@ -60,7 +60,7 @@ npm run test
 - [x] Center le formulaire verticalement et horizontalement, ajouter de la couleur, etc...
   - <span style="text-decoration:underline">Source :</span> `git checkout feat/redux`
   - <span style="text-decoration:underline">Cible :</span> `git checkout fix/style`
-- [ ] En ce basant sur les tests unitaires du fichier `Register.test.jsx`, écrire et exécuter des TUs pour le composant `<Login />`
+- [x] En ce basant sur les tests unitaires du fichier `Register.test.jsx`, écrire et exécuter des TUs pour le composant `<Login />`
   - <span style="text-decoration:underline">Source :</span> `git checkout fix/style`
   - <span style="text-decoration:underline">Cible :</span> `git checkout feat/test`
 

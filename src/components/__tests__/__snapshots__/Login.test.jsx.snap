@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login /> Should Component Renders With Default Behaviour 1`] = `
+<div>
+  <form
+    class="retro-form"
+  >
+    <h2>
+      LoremIpsum
+    </h2>
+    <div
+      class="retro-field"
+    >
+      <label
+        for="login"
+      >
+        What is your login ?
+      </label>
+      <input
+        class="retro-input"
+        id="login"
+        name="login"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      class="retro-field"
+    >
+      <label
+        for="email"
+      >
+        What is your email ?
+      </label>
+      <input
+        class="retro-input"
+        id="email"
+        name="email"
+        type="email"
+        value=""
+      />
+    </div>
+    <div
+      class="retro-field"
+    >
+      <label
+        for="password"
+      >
+        What is your password ?
+      </label>
+      <input
+        class="retro-input"
+        id="password"
+        name="password"
+        type="password"
+        value=""
+      />
+    </div>
+    <button
+      class="retro-button"
+      type="submit"
+    >
+      NEXT
+    </button>
+  </form>
+</div>
+`;
