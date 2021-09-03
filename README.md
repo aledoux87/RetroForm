@@ -42,7 +42,7 @@ npm run test
 - [x] Débuguer le fichier **Login.jsx**, afin de mettre à jour l'état (`state`) du composant
   - <span style="text-decoration:underline">Source :</span> `git checkout feat/email-field`
   - <span style="text-decoration:underline">Cible :</span> `git checkout fix/login-state`
-- [ ] Envoyer le formulaire, et déboguer la fonction `loginUser()` du service `UserService`
+- [x] Envoyer le formulaire, et déboguer la fonction `loginUser()` du service `UserService`
   - <span style="text-decoration:underline">Source :</span> `git checkout fix/login-state`
   - <span style="text-decoration:underline">Cible :</span> `git checkout fix/user-form`
 - [ ] Transformer les composants instanciés par classe (_stateful_), en composants fonctionnels (_stateless_) ; Attention au cycle de vie des composants...

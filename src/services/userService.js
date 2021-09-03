@@ -29,6 +29,26 @@ const buildRegisterResult = userData => {
   };
 };
 
+const checkEmail = email => {
+  try {
+    const validDomains = ['gmail', 'outlook', 'protonmail', 'yahoo'];
+    // NOTE: john.doe@gmail.com : john.doe / gmail.com
+    const [, domainExt] = email.split('@');
+    // NOTE: gmail.com : gmail / com
+    const [domain] = domainExt.split('.');
+
+    if (validDomains.includes(domain.toLowerCase())) {
+      return true;
+    }
+
+    return false;
+  } catch (err) {
+    // eslint-disable-next-line
+    console.log(err);
+    return false;
+  }
+};
+
 const userService = {
   /**
    * @method loginUser
@@ -38,16 +58,7 @@ const userService = {
   loginUser: userData => {
     return new Promise((resolve, reject) => {
       const millis = getRandomInt([...userData.password].length) * 1000;
-
-      /**
-       * TODO:
-       * Modifier / Corriger / Optimizer l'algorithme ci-dessous pour n'accepter que les noms de domaine suivants :
-       * 'Gmail', 'Outlook', 'Yahoo', 'ProtonMail'
-       */
-      const isValid =
-        userData.email.split('@')[1] === 'GEMAIL' ||
-        userData.email.split('@')[1] === 'OUTLOOK' ||
-        userData.email.split('@')[1] === 'YAHHO';
+      const isValid = checkEmail(userData.email);
 
       setTimeout(() => {
         if (isValid) {
