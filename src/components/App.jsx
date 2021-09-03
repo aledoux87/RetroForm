@@ -3,7 +3,7 @@ import Routing from './Routing';
 
 function App() {
   return (
-    <div>
+    <div className="retro-app">
       <h1>MY FØRM</h1>
       <Routing />
     </div>

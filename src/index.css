@@ -24,7 +24,7 @@
 }
 
 body {
-  background-color: var(--gray-400);
+  background-color: var(--blue-400);
   font-family: 'JetBrains Mono', monospace;
   font-weight: 400;
 }
@@ -39,7 +39,7 @@ h1 {
 }
 
 h2 {
-  color: var(--gray-600);
+  color: var(--blue-600);
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 2px;
@@ -70,7 +70,7 @@ label {
 }
 
 input {
-  color: var(--gray-700);
+  color: var(--gray-900);
   font-size: 1rem;
   line-height: 1.5rem;
 }
@@ -95,10 +95,17 @@ button {
   text-transform: uppercase;
 }
 
+.retro-app {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
 .retro-form {
   background-color: var(--gray-50);
-  border: 2px solid var(--gray-800);
-  box-shadow: 2px 2px 0 var(--gray-800);
+  border: 2px solid var(--blue-800);
+  box-shadow: 2px 2px 0 var(--blue-800);
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -115,6 +122,7 @@ button {
   background-color: var(--gray-100);
   border: 2px solid var(--gray-700);
   box-shadow: 2px 2px 0 var(--gray-700);
+  color: var(--gray-700);
   font-size: 1rem;
   line-height: 1.625rem;
   outline: none;
@@ -134,22 +142,22 @@ button {
 }
 
 .retro-button {
-  color: var(--gray-600);
+  color: var(--blue-600);
   background-color: var(--gray-50);
-  border: 2px solid var(--gray-800);
-  box-shadow: 2px 2px 0 var(--gray-800);
+  border: 2px solid var(--blue-800);
+  box-shadow: 2px 2px 0 var(--blue-800);
   margin: 1rem auto 0.5rem;
   padding: 0 1rem;
 }
 
 .retro-button:hover {
   background-color: var(--gray-50);
-  box-shadow: 1px 1px 0 var(--gray-800);
+  box-shadow: 1px 1px 0 var(--blue-800);
 }
 
 .retro-button:active {
   color: var(--gray-50);
-  background-color: var(--gray-600);
-  border: 2px solid var(--gray-600);
-  box-shadow: 0 0 0 var(--gray-600);
+  background-color: var(--blue-600);
+  border: 2px solid var(--blue-600);
+  box-shadow: 0 0 0 var(--blue-600);
 }

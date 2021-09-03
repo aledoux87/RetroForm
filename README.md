@@ -57,7 +57,7 @@ npm run test
 - [x] Utiliser **Redux**, plutôt que le passage de `props` entre les composants
   - <span style="text-decoration:underline">Source :</span> `git checkout feat/routing`
   - <span style="text-decoration:underline">Cible :</span> `git checkout feat/redux`
-- [ ] Center le formulaire verticalement et horizontalement, ajouter de la couleur, etc...
+- [x] Center le formulaire verticalement et horizontalement, ajouter de la couleur, etc...
   - <span style="text-decoration:underline">Source :</span> `git checkout feat/redux`
   - <span style="text-decoration:underline">Cible :</span> `git checkout fix/style`
 - [ ] En ce basant sur les tests unitaires du fichier `Register.test.jsx`, écrire et exécuter des TUs pour le composant `<Login />`
