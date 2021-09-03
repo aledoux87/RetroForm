@@ -24,9 +24,12 @@ describe('<Register />', () => {
       gender: 'Boy'
     });
 
+    const setUserDataMock = jest.fn();
     const goToNextViewMock = jest.fn();
 
-    const { container } = render(<Register title="LoremIpsum" goToNextView={goToNextViewMock} />);
+    const { container } = render(
+      <Register title="LoremIpsum" setUserData={setUserDataMock} goToNextView={goToNextViewMock} />
+    );
 
     const firstNameInput = container.querySelector('#firstName');
     const lastNameInput = container.querySelector('#lastName');
@@ -43,6 +46,7 @@ describe('<Register />', () => {
     fireEvent.click(sendButton);
 
     await waitFor(() => {
+      expect(setUserDataMock).toHaveBeenCalled();
       expect(goToNextViewMock).toHaveBeenCalled();
     });
   });

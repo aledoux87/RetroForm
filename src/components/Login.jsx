@@ -18,7 +18,10 @@ function Login(props) {
     });
 
     UserService.loginUser({ login, email, password })
-      .then(() => props.goToNextView())
+      .then(result => {
+        props.setUserData(result);
+        props.goToNextView();
+      })
       .catch(err => alert(err));
   };
 
@@ -54,6 +57,7 @@ function Login(props) {
 Login.propTypes = {
   title: string.isRequired,
   subTitle: string,
+  setUserData: func,
   goToNextView: func
 };
 

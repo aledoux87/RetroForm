@@ -20,7 +20,10 @@ function Register(props) {
     });
 
     UserService.registerUser({ firstName, lastName, yearOld, gender })
-      .then(() => props.goToNextView())
+      .then(result => {
+        props.setUserData(result);
+        props.goToNextView();
+      })
       .catch(err => alert(err));
   };
 
@@ -79,6 +82,7 @@ function Register(props) {
 Register.propTypes = {
   title: string.isRequired,
   subTitle: string,
+  setUserData: func,
   goToNextView: func
 };
 
