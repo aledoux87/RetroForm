@@ -36,7 +36,7 @@ npm run test
 
 ## Note(s)
 
-- [ ] Ajouter un champ `email` au formulaire (composant `<Login />`)
+- [x] Ajouter un champ `email` au formulaire (composant `<Login />`)
   - <span style="text-decoration:underline">Source :</span> `git checkout main`
   - <span style="text-decoration:underline">Cible :</span> `git checkout feat/email-field`
 - [ ] Débuguer le fichier **Login.jsx**, afin de mettre à jour l'état (`state`) du composant

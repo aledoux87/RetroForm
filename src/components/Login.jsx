@@ -32,8 +32,6 @@ class Login extends Component {
   }
 
   render() {
-    // TODO: Ajouter un champ 'email' au formulaire ci-dessous
-
     return (
       <form className="retro-form" onSubmit={this.submitForm}>
         <h2>{this.props.title}</h2>
@@ -50,6 +48,20 @@ class Login extends Component {
             onChange={e => this.setState({ login: e.target.value })}
           />
         </div>
+
+        <div className="retro-field">
+          <label htmlFor="email">What is your email ?</label>
+          <input
+            className="retro-input"
+            id="email"
+            name="email"
+            type="email"
+            defaultValue={this.state.email}
+            onChange={e => this.setState({ email: e.target.value })}
+          />
+        </div>
+
+        {/* TODO: Déboguer le composant, afin de mettre à jour son état */}
 
         <div className="retro-field">
           <label htmlFor="password">What is your password ?</label>
