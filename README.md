@@ -45,7 +45,7 @@ npm run test
 - [x] Envoyer le formulaire, et déboguer la fonction `loginUser()` du service `UserService`
   - <span style="text-decoration:underline">Source :</span> `git checkout fix/login-state`
   - <span style="text-decoration:underline">Cible :</span> `git checkout fix/user-form`
-- [ ] Transformer les composants instanciés par classe (_stateful_), en composants fonctionnels (_stateless_) ; Attention au cycle de vie des composants...
+- [x] Transformer les composants instanciés par classe (_stateful_), en composants fonctionnels (_stateless_) ; Attention au cycle de vie des composants...
   - <span style="text-decoration:underline">Source :</span> `git checkout fix/user-form`
   - <span style="text-decoration:underline">Cible :</span> `git checkout feat/hooks`
 - [ ] Créer un composant de récapitulatif de données

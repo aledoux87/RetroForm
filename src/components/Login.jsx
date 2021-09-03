@@ -1,24 +1,15 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { string, func } from 'prop-types';
+import Field from './Field';
 import UserService from '../services/userService';
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
+function Login(props) {
+  const [login, setLogin] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    this.state = {
-      login: '',
-      email: '',
-      password: ''
-    };
-
-    this.submitForm = this.submitForm.bind(this);
-  }
-
-  submitForm(event) {
+  const submitForm = event => {
     event.preventDefault();
-
-    const { login, email, password } = this.state;
 
     console.log('<Login />', {
       login,
@@ -27,58 +18,37 @@ class Login extends Component {
     });
 
     UserService.loginUser({ login, email, password })
-      .then(() => this.props.goToNextView())
+      .then(() => props.goToNextView())
       .catch(err => alert(err));
-  }
+  };
 
-  render() {
-    return (
-      <form className="retro-form" onSubmit={this.submitForm}>
-        <h2>{this.props.title}</h2>
-        {this.props.subTitle && <p>{this.props.subTitle}</p>}
+  return (
+    <form className="retro-form" onSubmit={submitForm}>
+      <h2>{props.title}</h2>
+      {props.subTitle && <p>{props.subTitle}</p>}
 
-        <div className="retro-field">
-          <label htmlFor="login">What is your login ?</label>
-          <input
-            className="retro-input"
-            id="login"
-            name="login"
-            type="text"
-            defaultValue={this.state.login}
-            onChange={e => this.setState({ login: e.target.value })}
-          />
-        </div>
+      <Field label="What is your login ?" id="login" defaultValue={login} onChange={e => setLogin(e.target.value)} />
 
-        <div className="retro-field">
-          <label htmlFor="email">What is your email ?</label>
-          <input
-            className="retro-input"
-            id="email"
-            name="email"
-            type="email"
-            defaultValue={this.state.email}
-            onChange={e => this.setState({ email: e.target.value })}
-          />
-        </div>
+      <Field
+        label="What is your email ?"
+        id="email"
+        type="email"
+        defaultValue={email}
+        onChange={e => setEmail(e.target.value)}
+      />
 
-        <div className="retro-field">
-          <label htmlFor="password">What is your password ?</label>
-          <input
-            className="retro-input"
-            id="password"
-            name="password"
-            type="password"
-            defaultValue={this.state.password}
-            onChange={e => this.setState({ password: e.target.value })}
-          />
-        </div>
+      <Field
+        label="What is your password ?"
+        id="password"
+        type="password"
+        onChange={e => setPassword(e.target.value)}
+      />
 
-        <button className="retro-button" type="submit">
-          NEXT
-        </button>
-      </form>
-    );
-  }
+      <button className="retro-button" type="submit">
+        NEXT
+      </button>
+    </form>
+  );
 }
 
 Login.propTypes = {
