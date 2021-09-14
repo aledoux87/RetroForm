@@ -1,92 +1,78 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { string, func } from 'prop-types';
 import Field from './Field';
 import UserService from '../services/userService';
 
-class Register extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      firstName: '',
-      lastName: '',
-      yearOld: 0,
-      gender: 'unknown'
-    };
+function Register(props) {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [yearOld, setYearOld] = useState(0);
+  const [gender, setGender] = useState('unknown');
 
-    this.submitForm = this.submitForm.bind(this);
-  }
 
-  submitForm(event) {
+  const submitForm = (event) =>{
     event.preventDefault();
-
-    const { firstName, lastName, yearOld, gender } = this.state;
-
-    console.log('<Register />', {
-      firstName,
-      lastName,
-      yearOld,
-      gender
-    });
-
     UserService.registerUser({ firstName, lastName, yearOld, gender })
-      .then(() => this.props.goToNextView())
+      .then(() => props.goToNextView())
       .catch(err => alert(err));
   }
+    
+  
+  return (
+    <form className="retro-form" onSubmit={submitForm}>
+      <h2>{props.title}</h2>
+      {props.subTitle && <p>{props.subTitle}</p>}
 
-  render() {
-    return (
-      <form className="retro-form" onSubmit={this.submitForm}>
-        <h2>{this.props.title}</h2>
-        {this.props.subTitle && <p>{this.props.subTitle}</p>}
+      <Field
+        label="What is your first name ?"
+        id="firstName"
+        placeholder="John"
+        defaultValue={props.firstName}
+        onChange={e => setFirstName(e.target.value)}
+      />
 
-        <Field
-          label="What is your first name ?"
-          id="firstName"
-          placeholder="John"
-          defaultValue={this.state.firstName}
-          onChange={e => this.setState({ firstName: e.target.value })}
-        />
+      <Field
+        label="What is your last name ?"
+        id="lastName"
+        placeholder="Doe"
+        defaultValue={props.lastName}
+        onChange={e => setLastName(e.target.value)}
+      />
 
-        <Field
-          label="What is your last name ?"
-          id="lastName"
-          placeholder="Doe"
-          defaultValue={this.state.lastName}
-          onChange={e => this.setState({ lastName: e.target.value })}
-        />
+      <Field
+        label="How old are you ?"
+        id="yearOld"
+        type="number"
+        placeholder="42"
+        onChange={e => setYearOld(e.target.value )}
+      />
 
-        <Field
-          label="How old are you ?"
-          id="yearOld"
-          type="number"
-          placeholder="42"
-          onChange={e => this.setState({ yearOld: e.target.value })}
-        />
+      <div className="retro-field">
+        <label htmlFor="gender">What kind of human are you ?</label>
+        <select
+          className="retro-select"
+          id="gender"
+          name="gender"
+          defaultValue={props.gender}
+          onChange={e => setGender(e.target.value)}>
+          <option value="unknown" disabled>
+            Unknown
+          </option>
+          <option value="gentleman">Gentleman</option>
+          <option value="lady">Lady</option>
+        </select>
+      </div>
 
-        <div className="retro-field">
-          <label htmlFor="gender">What kind of human are you ?</label>
-          <select
-            className="retro-select"
-            id="gender"
-            name="gender"
-            defaultValue={this.state.gender}
-            onChange={e => this.setState({ gender: e.target.value })}>
-            <option value="unknown" disabled>
-              Unknown
-            </option>
-            <option value="gentleman">Gentleman</option>
-            <option value="lady">Lady</option>
-          </select>
-        </div>
-
-        <button className="retro-button" type="submit">
-          SEND
-        </button>
-      </form>
-    );
-  }
+      <button className="retro-button" type="submit">
+        SEND
+      </button>
+    </form>
+  );
 }
+
+
+
 
 Register.propTypes = {
   title: string.isRequired,
