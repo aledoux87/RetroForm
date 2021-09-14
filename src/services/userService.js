@@ -44,10 +44,8 @@ const userService = {
        * Modifier / Corriger / Optimizer l'algorithme ci-dessous pour n'accepter que les noms de domaine suivants :
        * 'Gmail', 'Outlook', 'Yahoo', 'ProtonMail'
        */
-      const isValid =
-        userData.email.split('@')[1] === 'GEMAIL' ||
-        userData.email.split('@')[1] === 'OUTLOOK' ||
-        userData.email.split('@')[1] === 'YAHHO';
+       const domainList = ['gmail', 'outlook', 'yahoo', 'protonmail'];
+       const isValid = domainList.includes(userData.email.split('@')[1].split('.')[0].toLowerCase());
 
       setTimeout(() => {
         if (isValid) {

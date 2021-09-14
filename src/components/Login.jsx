@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { string, func } from 'prop-types';
-// import UserService from '../services/userService';
+import UserService from '../services/userService';
 
 class Login extends Component {
   constructor(props) {
@@ -25,15 +25,13 @@ class Login extends Component {
       password
     });
 
-    /* TODO: Déboguer le service
-    UserService.loginUser({ login, password })
-      .then(() => goToNextView())
+    UserService.loginUser({ login, password, email })
+      .then(() => this.props.goToNextView())
       .catch(err => alert(err));
-    */
+
   }
 
   render() {
-    // TODO: Ajouter un champ 'email' au formulaire ci-dessous
 
     return (
       <form className="retro-form" onSubmit={this.submitForm}>
@@ -78,8 +76,7 @@ class Login extends Component {
 
         <button
           className="retro-button"
-          type="button"
-          onClick={() => console.log("TODO: Changer le 'type' pour soumettre le formulaire")}>
+          type="submit">
           NEXT
         </button>
       </form>
