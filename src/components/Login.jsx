@@ -8,7 +8,8 @@ class Login extends Component {
 
     this.state = {
       login: '',
-      password: ''
+      password: '',
+      email: ''
     };
 
     this.submitForm = this.submitForm.bind(this);
@@ -17,7 +18,7 @@ class Login extends Component {
   submitForm(event) {
     event.preventDefault();
 
-    const { login, password } = this.state;
+    const { login, password, email } = this.state;
 
     console.log('<Login />', {
       login,
@@ -59,7 +60,19 @@ class Login extends Component {
             name="password"
             type="password"
             defaultValue={this.state.password}
-            onChange={e => (this.state = { password: e.target.value })}
+            onChange={e => this.setState({ password: e.target.value })}
+          />
+        </div>
+
+        <div className="retro-field">
+          <label htmlFor="email">What is your email ?</label>
+          <input
+            className="retro-input"
+            id="email"
+            name="email"
+            type="email"
+            defaultValue={this.state.email}
+            onChange={e => this.setState({ email: e.target.value })}
           />
         </div>
 
