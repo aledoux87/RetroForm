@@ -15,6 +15,9 @@ function Routing() {
       <Route path="/register">
         <Register title="Register" subTitle="Let's talk about you..." />
       </Route>
+      <Route path="/recap">
+        <Register title="Recap" subTitle="You are :" />
+      </Route>
     </Switch>
   );
 }

@@ -14,9 +14,12 @@ function Register(props) {
   const submitForm = (event) =>{
     event.preventDefault();
     UserService.registerUser({ firstName, lastName, yearOld, gender })
-      .then(() => props.goToNextView())
+      .then(result => {
+        props.setcurrentUser(result);
+        props.goToNextView();
+      })
       .catch(err => alert(err));
-  }
+  };
     
   
   return (
@@ -72,11 +75,10 @@ function Register(props) {
 }
 
 
-
-
 Register.propTypes = {
   title: string.isRequired,
   subTitle: string,
+  setcurrentUser: func,
   goToNextView: func
 };
 

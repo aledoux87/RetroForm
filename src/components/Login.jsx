@@ -4,6 +4,7 @@ import UserService from '../services/userService';
 
 
 function Login(props) {
+  //Hook = useState
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -11,9 +12,13 @@ function Login(props) {
   const submitForm = (event) =>{
     event.preventDefault();
     UserService.loginUser({ login, password, email })
-      .then(() => props.goToNextView())
+      .then(result => {
+        props.setcurrentUser(result);
+        props.goToNextView();
+      })
       .catch(err => alert(err));
   }
+
   
   return (
     <form className="retro-form" onSubmit={submitForm}>
@@ -69,6 +74,7 @@ function Login(props) {
 Login.propTypes = {
   title: string.isRequired,
   subTitle: string,
+  setcurrentUser: func,
   goToNextView: func
 };
 
