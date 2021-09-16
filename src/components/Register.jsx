@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { string, func } from 'prop-types';
 import Field from './Field';
 import UserService from '../services/userService';
+import { useHistory } from 'react-router';
 
 
 function Register(props) {
@@ -10,13 +11,14 @@ function Register(props) {
   const [yearOld, setYearOld] = useState(0);
   const [gender, setGender] = useState('unknown');
 
+  const history = useHistory();
 
   const submitForm = (event) =>{
     event.preventDefault();
     UserService.registerUser({ firstName, lastName, yearOld, gender })
       .then(result => {
         props.setcurrentUser(result);
-        props.goToNextView();
+        history.push('/recap');
       })
       .catch(err => alert(err));
   };
@@ -78,8 +80,7 @@ function Register(props) {
 Register.propTypes = {
   title: string.isRequired,
   subTitle: string,
-  setcurrentUser: func,
-  goToNextView: func
+  setcurrentUser: func
 };
 
 export default Register;

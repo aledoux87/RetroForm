@@ -12,12 +12,12 @@ function Recap(props) {
       {props.subTitle && <h3>{props.subTitle}</h3>}
 
       <div>
-        <p>Nom d'utilisateur : {props.userData.login}</p>
-        <p>Nom : {props.userData.lastName}</p>
-        <p>Prénom : {props.userData.firstName}</p>
-        <p>Adresse mail : {props.userData.email}</p>
-        <p>Année de naissance : {props.userData.birthYear}</p>
-        <p>Sexe : {props.userData.gender}</p>
+        <p>Nom d'utilisateur : {props.currentUser.login}</p>
+        <p>Nom : {props.currentUser.lastName}</p>
+        <p>Prénom : {props.currentUser.firstName}</p>
+        <p>Adresse mail : {props.currentUser.email}</p>
+        <p>Année de naissance : {props.currentUser.birthYear}</p>
+        <p>Sexe : {props.currentUser.gender}</p>
       </div>      
 
     </form>
@@ -26,10 +26,11 @@ function Recap(props) {
 }
 
 
+
 Recap.propTypes = {
   title: string.isRequired,
   subTitle: string,
-  userData: User
+  currentUser: User
 };
 
 export default Recap;
