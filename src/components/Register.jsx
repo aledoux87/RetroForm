@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { string, func } from 'prop-types';
+import { string } from 'prop-types';
 import Field from './Field';
 import UserService from '../services/userService';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../redux/user';
 
 // class Reg extends React.Component {
 //   constructor(props) {
@@ -40,12 +42,14 @@ function Register(props) {
   }, [firstName]);
 
   const history = useHistory();
+  
+  const dispatch = useDispatch();
 
   const submitForm = event => {
     event.preventDefault();
     UserService.registerUser({ firstName, lastName, yearOld, gender })
       .then(result => {
-        props.setcurrentUser(result);
+        dispatch(setUser(result));
         history.push('/recap');
       })
       .catch(err => alert(err));
@@ -60,7 +64,7 @@ function Register(props) {
         label="What is your first name ?"
         id="firstName"
         placeholder="John"
-        defaultValue={props.firstName}
+        defaultValue={firstName}
         onChange={e => setFirstName(e.target.value)}
       />
 
@@ -68,7 +72,7 @@ function Register(props) {
         label="What is your last name ?"
         id="lastName"
         placeholder="Doe"
-        defaultValue={props.lastName}
+        defaultValue={lastName}
         onChange={e => setLastName(e.target.value)}
       />
 
@@ -86,7 +90,7 @@ function Register(props) {
           className="retro-select"
           id="gender"
           name="gender"
-          defaultValue={props.gender}
+          defaultValue={gender}
           onChange={e => setGender(e.target.value)}>
           <option value="unknown" disabled>
             Unknown
@@ -105,8 +109,7 @@ function Register(props) {
 
 Register.propTypes = {
   title: string.isRequired,
-  subTitle: string,
-  setcurrentUser: func
+  subTitle: string
 };
 
 export default Register;
