@@ -21,17 +21,18 @@
   --blue-700: #0369a1;
   --blue-800: #075985;
   --blue-900: #0c4a6e;
+  --blue-1000: #0b4161;
 }
 
 body {
-  background-color: var(--gray-400);
+  background-color: var(--blue-800);
   font-family: 'JetBrains Mono', monospace;
   font-weight: 400;
 }
 
 h1 {
-  color: var(--gray-50);
-  font-size: 1.75rem;
+  color: var(--blue-50);
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: 3px;
   line-height: 3.5rem;
@@ -39,17 +40,18 @@ h1 {
 }
 
 h2 {
-  color: var(--gray-600);
+  color: var(--blue-700);
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 2px;
   line-height: 3rem;
   text-transform: uppercase;
+  text-align: center;
 }
 
 h3 {
-  color: var(--gray-900);
-  font-size: 1.25rem;
+  color: var(--blue-800);
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 1px;
   line-height: 2.5rem;
@@ -57,20 +59,34 @@ h3 {
 }
 
 p {
-  color: var(--gray-700);
+  color: var(--blue-700);
   font-size: 0.75rem;
   line-height: 1.5rem;
 }
 
+li {
+  color: var(--blue-1000);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
+
+span {
+  color: var(--blue-1000);
+  font-size: 1rem;
+  font-weight: 1000;
+  line-height: 2rem;
+}
+
 label {
-  color: var(--gray-900);
+  color: var(--blue-900);
   font-size: 0.875rem;
   line-height: 1.75rem;
   font-style: italic;
 }
 
 input {
-  color: var(--gray-700);
+  color: var(--blue-700);
   font-size: 1rem;
   line-height: 1.5rem;
 }
@@ -82,7 +98,7 @@ input::placeholder {
 }
 
 select {
-  color: var(--gray-700);
+  color: var(--blue-700);
   font-size: 1rem;
   outline: none;
 }
@@ -95,10 +111,17 @@ button {
   text-transform: uppercase;
 }
 
+.center-app{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: auto;  
+}
+
 .retro-form {
   background-color: var(--gray-50);
   border: 2px solid var(--gray-800);
-  box-shadow: 2px 2px 0 var(--gray-800);
+  box-shadow: 5px 5px 0 var(--blue-1000);
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -112,20 +135,21 @@ button {
 }
 
 .retro-input {
-  background-color: var(--gray-100);
+  background-color: var(--blue-50);
   border: 2px solid var(--gray-700);
   box-shadow: 2px 2px 0 var(--gray-700);
   font-size: 1rem;
   line-height: 1.625rem;
   outline: none;
+  color: var(--blue-800);
 }
 
 .retro-input:focus {
-  background-color: var(--gray-50);
+  background-color: var(--blue-50);
 }
 
 .retro-select {
-  background-color: var(--gray-100);
+  background-color: var(--blue-50);
   border: 2px solid var(--gray-700);
   box-shadow: 2px 2px 0 var(--gray-700);
   font-family: 'JetBrains Mono', monospace;
@@ -134,8 +158,8 @@ button {
 }
 
 .retro-button {
-  color: var(--gray-600);
-  background-color: var(--gray-50);
+  color: var(--blue-900);
+  background-color: var(--blue-50);
   border: 2px solid var(--gray-800);
   box-shadow: 2px 2px 0 var(--gray-800);
   margin: 1rem auto 0.5rem;
@@ -143,13 +167,14 @@ button {
 }
 
 .retro-button:hover {
-  background-color: var(--gray-50);
-  box-shadow: 1px 1px 0 var(--gray-800);
+  background-color: var(--blue-800);
+  color: var(--blue-50);
+  box-shadow: 2px 2px 0 var(--gray-800);
 }
 
 .retro-button:active {
-  color: var(--gray-50);
-  background-color: var(--gray-600);
+  color: var(--blue-50);
+  background-color: var(--blue-800);
   border: 2px solid var(--gray-600);
   box-shadow: 0 0 0 var(--gray-600);
 }

@@ -17,7 +17,7 @@ function Routing() {
         <Register title="Register" subTitle="Let's talk about you..." />
       </Route>
       <Route path="/recap">
-        <Recap title="Recapitulatif" subTitle="You are :" />
+        <Recap title="Recapitulatif" subTitle="Your informations" />
       </Route>
     </Switch>
   );

@@ -34,7 +34,7 @@ function Login(props) {
   return (
     <form className="retro-form" onSubmit={submitForm}>
       <h2>{props.title}</h2>
-      {props.subTitle && <p>{props.subTitle}</p>}
+      {props.subTitle && <h3>{props.subTitle}</h3>}
 
       <Field label="What is your login ?" id="login" type="text" defaultValue={login} onChange={setLogin} />
 
