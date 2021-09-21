@@ -12,7 +12,7 @@ function Recap(props) {
 
       <ul>
         {Object.entries(user).map(([key, val], idx) => (
-          <li key={idx} style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <li key={idx} >
             <span>{key} :</span> {val}
           </li>
         ))}
