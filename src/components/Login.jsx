@@ -36,7 +36,13 @@ function Login(props) {
       <h2>{props.title}</h2>
       {props.subTitle && <h3>{props.subTitle}</h3>}
 
-      <Field label="What is your login ?" id="login" type="text" defaultValue={login} onChange={setLogin} />
+      <Field 
+        label="What is your login ?" 
+        id="login" 
+        type="text" 
+        defaultValue={login} 
+        onChange={setLogin} 
+      />
 
       <Field
         label="What is your password ?"

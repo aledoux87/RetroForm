@@ -3,12 +3,12 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { makeStore } from '../../redux/store';
-import Register from '../Register';
+import Login from '../Login';
 import UserService from '../../services/userService';
 
 jest.mock('../../services/userService');
 
-describe('<Register />', () => {
+describe('<Login />', () => {
   // const { location } = window;
   const store = makeStore();
 
@@ -27,7 +27,7 @@ describe('<Register />', () => {
     const { container } = render(
       <Provider store={store}>
         <Router>
-          <Register title="LoremIpsum" />
+          <Login title="LoremIpsum" />
         </Router>
       </Provider>
     );
@@ -38,7 +38,7 @@ describe('<Register />', () => {
     const { queryByText } = render(
       <Provider store={store}>
         <Router>
-          <Register title="LoremIpsum" subTitle="Lorem ipsum dolor sit amet" />
+          <Login title="LoremIpsum" subTitle="Lorem ipsum dolor sit amet" />
         </Router>
       </Provider>
     );
@@ -46,37 +46,34 @@ describe('<Register />', () => {
   });
 
   it("Should 'onSubmit' Function Has Been Called", async () => {
-    UserService.registerUser.mockResolvedValue({
-      firstName: 'John',
-      lastName: 'DOE',
-      birthYear: 1993,
-      gender: 'Boy'
+    UserService.loginUser.mockResolvedValue({
+        login: "jojododo",
+        passwordStrong: 8,
+        email: "jojododo@yahoo.fr"
     });
 
     const { container } = render(
       <Provider store={store}>
         <Router>
-          <Register title="LoremIpsum" />
+          <Login title="LoremIpsum" />
         </Router>
       </Provider>
     );
 
-    const firstNameInput = container.querySelector('#firstName');
-    const lastNameInput = container.querySelector('#lastName');
-    const yearOldInput = container.querySelector('#yearOld');
-    const genderSelect = container.querySelector('#gender');
+    const loginInput = container.querySelector('#login');
+    const passwordInput = container.querySelector('#password');
+    const emailInput = container.querySelector('#email');
 
-    fireEvent.change(firstNameInput, { target: { value: 'John' } });
-    fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
-    fireEvent.change(yearOldInput, { target: { value: '42' } });
-    fireEvent.change(genderSelect, { target: { value: 'gentleman' } });
+    fireEvent.change(loginInput, { target: { value: 'jojododo' } });
+    fireEvent.change(passwordInput, { target: { value: '12345678' } });
+    fireEvent.change(emailInput, { target: { value: 'jojododo@yahoo.fr' } });
 
-    const sendButton = screen.getByText('SEND');
+    const sendButton = screen.getByText('NEXT');
 
     fireEvent.click(sendButton);
 
     await waitFor(() => {
-      expect(window.location.href).toEqual('http://localhost/recap');
+      expect(window.location.href).toEqual('http://localhost/register');
     });
   });
 });
