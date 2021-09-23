@@ -3,8 +3,8 @@ import { string } from 'prop-types';
 import UserService from '../services/userService';
 import Field from './Field';
 import { useHistory } from 'react-router';
-import { useDispatch } from 'react-redux';
-import { setUser } from '../redux/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, getUser } from '../redux/user';
 
 function useField(defaultState) {
   const [val, setVal] = useState(defaultState);
@@ -13,15 +13,16 @@ function useField(defaultState) {
 
 function Login(props) {
   //Hook = useState
-  const [login, setLogin] = useField('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-
   const history = useHistory();
-
   const dispatch = useDispatch();
+  const user = useSelector(state => getUser(state)); // useSelector(getUser);
+  const [login, setLogin] = useField(user.login);
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(user.email);
 
   const submitForm = event => {
+    dispatch({ type: 'Counter - Set Counter', payload: 1 });
+
     event.preventDefault();
     UserService.loginUser({ login, password, email })
       .then(result => {
@@ -36,13 +37,7 @@ function Login(props) {
       <h2>{props.title}</h2>
       {props.subTitle && <h3>{props.subTitle}</h3>}
 
-      <Field 
-        label="What is your login ?" 
-        id="login" 
-        type="text" 
-        defaultValue={login} 
-        onChange={setLogin} 
-      />
+      <Field label="What is your login ?" id="login" type="text" defaultValue={login} onChange={setLogin} />
 
       <Field
         label="What is your password ?"

@@ -3,8 +3,9 @@ import { string } from 'prop-types';
 import Field from './Field';
 import UserService from '../services/userService';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../redux/user';
+import { getUser } from '../redux/user/selectors';
 
 // class Reg extends React.Component {
 //   constructor(props) {
@@ -32,22 +33,19 @@ import { setUser } from '../redux/user';
 // }
 
 function Register(props) {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [yearOld, setYearOld] = useState(0);
-  const [gender, setGender] = useState('unknown');
-
-  React.useEffect(() => {
-    // TODO: ...
-  }, [firstName]);
-
   const history = useHistory();
-  
   const dispatch = useDispatch();
+  const user = useSelector(state => getUser(state));
+  const counter = useSelector(state => state.counter || 0);
+  const [lastName, setLastName] = useState(user.lastName);
+  const [yearOld, setYearOld] = useState(user.yearOld);
+  const [gender, setGender] = useState(user.gender);
 
   const submitForm = event => {
+    dispatch({ type: 'Counter - Set Counter', payload: counter + 1 });
+
     event.preventDefault();
-    UserService.registerUser({ firstName, lastName, yearOld, gender })
+    UserService.registerUser({ firstName: user.firstName, lastName, yearOld, gender })
       .then(result => {
         dispatch(setUser(result));
         history.push('/recap');
@@ -64,8 +62,8 @@ function Register(props) {
         label="What is your first name ?"
         id="firstName"
         placeholder="John"
-        defaultValue={firstName}
-        onChange={e => setFirstName(e.target.value)}
+        defaultValue={user.firstName}
+        onChange={e => dispatch({ type: 'USER/SET_USER', payload: { firstName: e.target.value } })}
       />
 
       <Field

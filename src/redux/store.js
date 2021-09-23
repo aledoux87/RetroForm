@@ -1,9 +1,11 @@
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import user from './user';
+import counter from './counter/reducer';
 
 const rootReducer = combineReducers({
-  user
+  user,
+  counter
 });
 
 export const makeStore = (state = {}) => {

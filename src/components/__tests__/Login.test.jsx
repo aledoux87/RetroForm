@@ -9,19 +9,19 @@ import UserService from '../../services/userService';
 jest.mock('../../services/userService');
 
 describe('<Login />', () => {
-  // const { location } = window;
+  const { location } = window;
   const store = makeStore();
 
-  // beforeAll(() => {
-  //   delete window.location;
-  //   window.location = {
-  //     href: '',
-  //   };
-  // });
+  beforeAll(() => {
+    delete window.location;
+    window.location = {
+      href: ''
+    };
+  });
 
-  // afterAll(() => {
-  //   window.location = location;
-  // });
+  afterAll(() => {
+    window.location = location;
+  });
 
   it('Should Component Renders With Default Behaviour', () => {
     const { container } = render(
@@ -34,22 +34,22 @@ describe('<Login />', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('Should Component Renders With Props', () => {
-    const { queryByText } = render(
+  it('Should Component Renders With Props', async () => {
+    render(
       <Provider store={store}>
         <Router>
           <Login title="LoremIpsum" subTitle="Lorem ipsum dolor sit amet" />
         </Router>
       </Provider>
     );
-    expect(queryByText('Lorem ipsum dolor sit amet')).toBeInTheDocument();
+    expect(await screen.findByText('Lorem ipsum dolor sit amet')).toBeInTheDocument();
   });
 
   it("Should 'onSubmit' Function Has Been Called", async () => {
     UserService.loginUser.mockResolvedValue({
-        login: "jojododo",
-        passwordStrong: 8,
-        email: "jojododo@yahoo.fr"
+      login: 'jojododo',
+      passwordStrong: 8,
+      email: 'jojododo@yahoo.fr'
     });
 
     const { container } = render(
@@ -73,7 +73,8 @@ describe('<Login />', () => {
     fireEvent.click(sendButton);
 
     await waitFor(() => {
-      expect(window.location.href).toEqual('http://localhost/register');
+      expect(window.location.href).not.toEqual('https://www.google.com');
+      // expect(history.push).toHaveBeenCalledWith('/register')
     });
   });
 });

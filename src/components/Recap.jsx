@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 function Recap(props) {
   const user = useSelector(state => state.user);
+  const counter = useSelector(state => state.counter || 0);
 
   return (
     <form className="retro-form">
@@ -12,11 +13,13 @@ function Recap(props) {
 
       <ul>
         {Object.entries(user).map(([key, val], idx) => (
-          <li key={idx} >
+          <li key={idx}>
             <span>{key} :</span> {val}
           </li>
         ))}
       </ul>
+
+      <p>Counter : {counter}</p>
     </form>
   );
 }
